@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AppFirebaseKotlinIdat</string>
+
+    <string name="etemail">Ingrese su email:</string>
+    <string name="valtvtitulo">AUTENTICACIÓN FIREBASE</string>
+    <string name="etpassword">Ingrese su password:</string>
+    <string name="valbtnlogin">Autenticación Firebase</string>
+</resources>

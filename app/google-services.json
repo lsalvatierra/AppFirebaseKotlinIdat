@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "259051779743",
+    "project_id": "appfirebaseares",
+    "storage_bucket": "appfirebaseares.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259051779743:android:29e7dd56831be2764594aa",
+        "android_client_info": {
+          "package_name": "pe.edu.idat.appfirebasekotlinidat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259051779743-vot3qj11raocpb0g7esg6l5mkusfkd60.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.edu.idat.appfirebasekotlinidat",
+            "certificate_hash": "05d59dce9b5e0da5a1b636398caec6e7e607019f"
+          }
+        },
+        {
+          "client_id": "259051779743-nqhqqak1co1ksr1s5oph6ac2pm177bne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcXiUJZ5mOJ9Cv9V2jtxN_vfYy8o7392s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259051779743-nqhqqak1co1ksr1s5oph6ac2pm177bne.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
