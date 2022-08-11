@@ -5,4 +5,5 @@
     <string name="valtvtitulo">AUTENTICACIÓN FIREBASE</string>
     <string name="etpassword">Ingrese su password:</string>
     <string name="valbtnlogin">Autenticación Firebase</string>
+    <string name="valbtnverdatos">VER PERSONAS</string>
 </resources>

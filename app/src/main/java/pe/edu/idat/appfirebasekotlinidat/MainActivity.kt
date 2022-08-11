@@ -28,35 +28,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding : ActivityMainBinding
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var oneTapClient: SignInClient
-    private lateinit var signInRequest: BeginSignInRequest
-    private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
-    private var showOneTapUI = true
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
 
-        oneTapClient = Identity.getSignInClient(this)
-        signInRequest = BeginSignInRequest.builder()
-            .setPasswordRequestOptions(BeginSignInRequest.PasswordRequestOptions.builder()
-                .setSupported(true)
-                .build())
-            .setGoogleIdTokenRequestOptions(
-                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                    .setSupported(true)
-                    // Your server's client ID, not your Android client ID.
-                    .setServerClientId(getString(R.string.default_web_client_id))
-                    // Only show accounts previously used to sign in.
-                    .setFilterByAuthorizedAccounts(true)
-                    .build())
-            // Automatically sign in when exactly one credential is retrieved.
-            .setAutoSelectEnabled(true)
-            .build()
+
 
 
         binding.btnlogin.setOnClickListener(this)
@@ -65,7 +43,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(vista: View) {
         when(vista.id){
             R.id.btnlogin -> autenticacionFirebase()
-            R.id.btnlogingoogle -> autenticacionFirebaseGoole()
+
         }
     }
 
@@ -104,51 +82,4 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Toast.makeText(applicationContext,
             "Error en la autenticación.", Toast.LENGTH_LONG).show()
     }
-
-    private fun autenticacionFirebaseGoole() {
-        //pbautenticacion.visibility = View.VISIBLE
-
-        oneTapClient.beginSignIn(signInRequest)
-            .addOnSuccessListener(this) { result ->
-                try {
-                    startIntentSenderForResult(
-                        result.pendingIntent.intentSender, REQ_ONE_TAP,
-                        null, 0, 0, 0, null)
-                } catch (e: IntentSender.SendIntentException) {
-                    Log.e("LoginGoogle", "Couldn't start One Tap UI: ${e.localizedMessage}")
-                }
-            }
-            .addOnFailureListener(this) { e ->
-                // No saved credentials found. Launch the One Tap sign-up flow, or
-                // do nothing and continue presenting the signed-out UI.
-                Log.d("LoginGoogle", e.localizedMessage)
-            }
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 2){
-            try {
-                val credential = oneTapClient.getSignInCredentialFromIntent(data)
-                val idToken = credential.googleIdToken
-                when {
-                    idToken != null -> {
-                        // Got an ID token from Google. Use it to authenticate
-                        // with Firebase.
-                        Log.d("LoginGoogle", "Got ID token.")
-                    }
-                    else -> {
-                        // Shouldn't happen.
-                        Log.d("LoginGoogle", "No ID token!")
-                    }
-                }
-            } catch (e: ApiException) {
-
-            }
-    }
-
-    }
-
-
 }
